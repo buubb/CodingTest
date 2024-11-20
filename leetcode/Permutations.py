@@ -23,8 +23,8 @@ class Solution:
 import itertools
 class Solution2:
     def permute(self, nums:list) -> list:
-        print(list(itertools.permutations(nums)))
+        print(list(map(list,itertools.permutations(nums))))
 
 nums = list(map(int, input()))
-s = Solution()
+s = Solution2()
 print(s.permute(nums))
