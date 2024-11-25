@@ -15,15 +15,26 @@ class Solution:
                 return 0
         L = dfs(left)
         R = dfs(right)
-        print(L, R)
-        if L > R and L - R > 1:
-            return False
-        elif L < R and R - L > 1:
+        if abs(L-R) > 1:
             return False
         else:
             return True 
+class Solution2:
+    def isBalanced(self, root:TreeNode) -> bool:
+        def check(root):
+            if not root:
+                return 0
+            
+            left = check(root.left)
+            right = check(root.right)
 
-
+            if left == -1 \
+                or right == -1 \
+                    or abs(left-right) > 1:
+                return -1
+            return max(left, right) + 1
+        return check(root) != -1
+    
 if __name__ == "__main__":
     root = TreeNode(3)
     root.left = TreeNode(9)
@@ -39,4 +50,6 @@ if __name__ == "__main__":
     root2.left.left.left = TreeNode(4)
     root2.left.left.right = TreeNode(4)
     s = Solution()
+    s2 = Solution2()
     print(s.isBalanced(root.left, root.right))
+    print(s2.isBalanced(root2))
