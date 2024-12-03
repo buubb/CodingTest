@@ -1,6 +1,8 @@
 from sys import stdin
 from collections import defaultdict, deque
 class Solution:
+    is_flag: bool = False
+    res: int = 0
     def family(self):
         N = int(stdin.readline())
         a,b = map(int, stdin.readline().split())
@@ -27,6 +29,24 @@ class Solution:
             
             return -1
             
+        visited = set()
+        def dfs(node, res):
+            if node == b:
+                self.is_flag = True
+                self.res = res
+                return
+            
+            for i in grid[node]:
+                if i not in visited:
+                    visited.add(i)
+                    dfs(i, res+1)
+                    
+        num = 0
+        dfs(a, num)
+        if self.is_flag == True:
+            print(self.res)
+        else:
+            print(-1)
         print(bfs(a))
         
 
