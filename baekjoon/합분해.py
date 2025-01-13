@@ -1,4 +1,5 @@
 import sys
+from itertools import combinations
 input = sys.stdin.readline
 
 class Solution:
@@ -13,6 +14,10 @@ class Solution:
                     dp[i][j] = (dp[i-1][j] + dp[i][j-1]) % 1_000_000_000
         print(dp[N][K])
 
+    def divide_sum2(self): # 메모리 초과 - combinations 모듈 때문
+        N, K = map(int, input().split())
+        print(len(list(combinations(range(N+K-1),K-1)))% 1_000_000_000)
+
 if __name__ == "__main__":
     s = Solution()
-    s.divide_sum()
+    s.divide_sum2()
