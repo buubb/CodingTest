@@ -1,0 +1,43 @@
+import sys
+from collections import defaultdict, deque
+input = sys.stdin.readline
+
+class Solution:
+    def route(self):
+        n = int(input())
+        grid = [
+            list(map(int, input().split())) for _ in range(n)
+        ]
+        graph = defaultdict(list)
+        for i in range(n):
+            for j in range(n):
+                if grid[i][j] == 1:
+                    graph[i].append(j)
+        
+        def bfs(i,j):
+            Q = deque()
+            Q.append(i)
+            visited = [False]*n
+            if i != j:
+                visited[i] = True
+            while Q:
+                x = Q.popleft()
+                if visited[i] and x == j:
+                    grid[i][j] = 1
+                    return
+                for k in graph[x]:
+                    if not visited[k]:
+                        Q.append(k)
+                        visited[k] = True
+            grid[i][j]=0
+        for i in range(n):
+            for j in range(n):
+                bfs(i,j)
+        for g in grid:
+            print(*g)
+
+if __name__ == "__main__":
+    s = Solution()
+    s.route()
+
+            
