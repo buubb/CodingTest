@@ -23,6 +23,19 @@ class Solution:
         print(pack)
         print(pack[-1][-1])
 
+    def knapsack_(self):
+        n,k = map(int, input().split())
+        cargo = [] # w, v
+        for _ in range(n):
+            cargo.append(tuple(map(int, input().split())))
+        
+        dp = [0] * (k+1)
+        for w, v in cargo:
+            for i in range(k, w-1, -1):
+                dp[i] = max(dp[i], dp[i-w] + v)
+        
+        print(dp[k])
+
 if __name__ == "__main__":
     s = Solution()
-    s.knapsack()
+    s.knapsack_()
