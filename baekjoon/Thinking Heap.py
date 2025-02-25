@@ -31,7 +31,6 @@ class Solution:
 
         for h in hp[1:]:
             print(h)
-   
 
 if __name__ == "__main__":
     s = Solution()
