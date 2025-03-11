@@ -13,7 +13,7 @@ class Solution:
             for i in range(k, n+1):
                 if i not in arr:
                     arr.append(i)
-                    print(arr)
+                    # print(arr)
                     dfs(i+1)
                     arr.pop()
         
