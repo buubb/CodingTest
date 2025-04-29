@@ -1,28 +1,22 @@
 import sys
 input = sys.stdin.readline
 
-class Solution:
-    def is_prime(self, n):
-        if n == 1:
-            return False
-        for i in range(2, int(n**0.5)+1):
-            if n % i == 0:
-                return False
-        return True
-            
-
+class Solution:     
     def answer(self):
+        # 소수 구하기
+        arr = [0]*2 + [1]*246911
+        for i in range(2, 123456+1):
+            if arr[i] == 1:
+                k = 2
+                while i*k < 246912+1:
+                    arr[i*k] = 0
+                    k += 1
+
         while True:
             n = int(input())
             if n == 0:
                 break
-
-            # 소수 구하기
-            cnt = 0
-            for k in range(n+1, 2*n+1):
-                if self.is_prime(k):
-                    cnt += 1
-            print(cnt)
+            print(sum(arr[n+1:2*n+1]))
 
 if __name__ == "__main__":
     s = Solution()
