@@ -30,7 +30,30 @@ class Solution:
         print(max_pay)        
 
 
+    def answer_dp(self):
+        N = int(input())
+
+        schedule = []
+        for i in range(N):
+            t, p = map(int, input().split())
+            schedule.append([t,p])
+
+        schedule.reverse()
+        schedule.insert(0, [])
+
+        # print(schedule)
+
+        dp = [0] * (N+1)
+
+        for i in range(1, N+1):
+            if i < schedule[i][0]:
+                dp[i] = dp[i-1]
+            else:
+                dp[i] = max(dp[i-1], schedule[i][1] + dp[i-schedule[i][0]]) 
+
+        print(dp[N])
+
 
 if __name__ == "__main__":
     s = Solution()
-    s.answer()
+    s.answer_dp()
